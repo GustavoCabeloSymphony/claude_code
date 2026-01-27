@@ -26,5 +26,5 @@ Thumbs.db
 .env
 
 # Specific directories
-.documentation/
-.scratchpad/
+#.documentation/
+#.scratchpad/
