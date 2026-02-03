@@ -1,0 +1,99 @@
+---
+description: Code quality protocol for all file modifications. Applies linting and formatting standards.
+globs: []
+alwaysApply: true
+---
+
+You are working in a repository with established code quality standards. Follow this protocol when creating or modifying any file.
+
+QUALITY CHECK PLAYBOOK (file modification protocol)
+
+Every file modification follows a three-phase protocol:
+
+| Phase | Actions |
+|-------|---------|
+| **Pre-Modification** | Identify file language, locate applicable quality config, note existing linter errors (baseline) |
+| **During Modification** | Follow language-specific style (indentation, imports, naming) as defined by project tooling |
+| **Post-Modification** | Run applicable linter/formatter commands, verify no new errors introduced, fix any issues before committing |
+
+LANGUAGE DETECTION & TOOL MAPPING
+
+The following table documents languages and their quality tooling. This section is populated by the Rules Writer Agent during initial discovery.
+
+| Language | Formatter | Linter | Type Checker | Config Source |
+|----------|-----------|--------|--------------|---------------|
+| Python | (to be discovered) | (to be discovered) | (to be discovered) | (evidence path) |
+| TypeScript | (to be discovered) | (to be discovered) | tsc | (evidence path) |
+| Markdown | (to be discovered) | (to be discovered) | — | (evidence path) |
+
+Note: The Rules Writer Agent must populate this table during the LANGUAGE & TOOLING DISCOVERY phase by examining config files like `pyproject.toml`, `.pre-commit-config.yaml`, `.eslintrc.*`, etc.
+
+PRE-COMMIT HOOKS
+
+If `.pre-commit-config.yaml` exists in the repository root:
+
+- Pre-commit hooks run automatically on commit
+- Hooks enforce formatting, linting, and other quality checks
+- If a hook fails, the commit is blocked until issues are resolved
+- To be populated: list specific hooks configured
+
+Evidence: (to be populated with repo://path reference)
+
+CI QUALITY GATES
+
+Quality checks that run in continuous integration:
+
+- To be populated: which workflows run quality checks
+- To be populated: required pass conditions
+- To be populated: commands used
+
+Evidence: (to be populated with repo://.github/workflows/* references)
+
+AGENT RESPONSIBILITIES
+
+When modifying files, all agents must:
+
+1. **Before modifying a file:**
+   - Identify the file's language
+   - Check if a formatter/linter applies (consult the table above)
+   - Use ReadLints tool to capture baseline errors for that file
+
+2. **During modification:**
+   - Follow the project's style conventions as defined by tooling configs
+   - Match existing patterns (indentation, import ordering, naming)
+   - Do not introduce style inconsistencies
+
+3. **After modifying:**
+   - Use ReadLints tool to check for new linter errors
+   - Run the appropriate formatter if one is configured (e.g., `black .`, `prettier --write`)
+   - Run the appropriate linter if one is configured (e.g., `ruff check`, `eslint`)
+   - If new errors introduced: fix them before completing the task
+   - If pre-existing errors: do NOT fix unless explicitly requested (avoid scope creep)
+
+4. **Before committing:**
+   - Verify all quality checks pass
+   - If pre-commit hooks exist, they will run automatically and block if checks fail
+
+QUALITY COMMAND REFERENCE
+
+To be populated by Rules Writer Agent with project-specific commands:
+
+- Formatter command: (e.g., `make format`, `npm run format`, `black .`)
+- Linter command: (e.g., `make lint`, `npm run lint`, `ruff check .`)
+- Type checker command: (e.g., `make typecheck`, `npm run typecheck`, `mypy .`)
+- All quality checks: (e.g., `make quality`, `npm run ci`)
+
+Evidence: (to be populated with repo://Makefile, repo://package.json, etc.)
+
+EXCEPTIONS & OVERRIDES
+
+Document any exceptions to quality standards:
+
+- Generated files that should not be linted
+- Legacy code areas with different standards
+- Files excluded in quality tool configs
+
+Evidence: (to be populated with references to exclusion configs)
+
+Last verified: (to be set by Rules Writer Agent)
+Confidence: Low (until populated by Rules Writer Agent during discovery phase)
