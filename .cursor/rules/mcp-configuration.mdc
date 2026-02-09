@@ -1,0 +1,9 @@
+---
+description: Use when configuring or troubleshooting MCP servers, MCP credentials, OAuth for MCP, or when ~/.claude.json or MCP config is involved.
+globs: []
+alwaysApply: false
+---
+
+- MCP server configs are stored in `~/.claude.json` - always check there first
+- After changing MCP credentials or config, inform the user a restart is needed rather than retrying in-session
+- Do not remove and re-add MCP servers repeatedly as a troubleshooting strategy

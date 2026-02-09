@@ -1,0 +1,9 @@
+---
+description: Use when configuring or troubleshooting Atlassian MCP (e.g. Jira), MCP authentication, OAuth for MCP, or when ~/.claude.json or MCP config is involved. Covers where to read config, handling stale OAuth tokens, 401/API token policy, and avoiding transport-method cycling.
+alwaysApply: false
+---
+1. Check `~/.claude.json` for MCP configuration (NOT other locations)
+2. If OAuth tokens are cached and stale, a full session restart is required - do not repeatedly retry within the same session
+3. If authentication fails with 401, check if API tokens are blocked by org admin policy before trying alternative approaches
+4. Never repeatedly cycle through transport methods (SSE, STDIO, OAuth) without user direction - ask which approach to use first
+   Add under a ## MCP Configuration section, or merge with the Atlassian section above

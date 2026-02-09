@@ -1,4 +1,8 @@
 ---
+description: Use when writing, updating, or auditing Cursor rules (.mdc files in .cursor/rules). Defines the Rules Writer Agent: how to discover patterns, document architecture, maintain evidence-backed rule content, and use front-matter (description, globs, alwaysApply) correctly.
+globs:
+  - ".cursor/rules/**/*.mdc"
+  - ".cursor/rules/**/*.md"
 alwaysApply: false
 ---
 
